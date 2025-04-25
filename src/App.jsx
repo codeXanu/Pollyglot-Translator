@@ -1,13 +1,28 @@
 import React from 'react'
 import Header from './Header'
+import LanguageSelector from './LanguageSelector';
+import TranslatedData from './TranslatedData';
 
 function App() {
   const [language, setLanguage] = React.useState("Hindi")
-  const languages = ["Hindi","French", "Spanish", "Japanese", "German" ]
   const [message, setMessage] = React.useState("");
+  const [response, setResponse] = React.useState("");
 
-  console.log(language)
-  console.log(message)
+  const handleTranslate = async ()=> {
+    try {
+      const res = await fetch("http://localhost:3000/api/chat", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(({message, language}))
+      })
+      const data = await res.json()
+      console.log(data)
+      setResponse(data)
+    } catch (error) {
+      console.error("ERROR:", error)
+    }
+  }
+ 
 
 
   return (
@@ -35,24 +50,13 @@ function App() {
           </h3>
 
           {/* Language options */}
-          <div className="h-32 overflow-y-auto space-y-2 ml-2">
-            { languages.map((lang, i) => (
-              <label key={i} className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="language"
-                  value={lang}
-                  checked={language === lang}
-                  onChange={(e) => setLanguage(e.target.value)}
-                />
-                <span>{lang}</span>
-              </label> 
-            )) }
-            
-          </div>
+          <LanguageSelector language={language} setLanguage={setLanguage} />
+          <TranslatedData />
 
           {/* Translate button */}
-          <button className="mt-6 w-full bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-md font-semibold transition duration-200">
+          <button className="mt-6 w-full bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-md font-semibold transition duration-200"
+            onClick={handleTranslate}
+          >
             Translate
           </button>
         </div>
