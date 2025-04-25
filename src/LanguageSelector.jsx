@@ -3,7 +3,7 @@ import React from "react";
 export default function LanguageSelector({language, setLanguage}) {
     const languages = ["Hindi", "English", "French", "Spanish", "Japanese", "German" ]
     return(
-        <div className="h-32 overflow-y-auto space-y-2 ml-2">
+        <div className="w-full h-50 p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400">
             { languages.map((lang, i) => (
               <label key={i} className="flex items-center space-x-2">
                 <input
