@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+header{
+  background-image: url('./assets/Vector.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  background-color: #0D182E;
+  color: #32CD32;
+  margin-bottom: 0;
+}
+.header-main-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.header-main-div img{
+  height: 64px;
+}
+.header-text-div{
+  text-align: left;
+}
+.header-text-div h1{
+  font-size: 2em;
+}
+.header-text-div p{
+
+  font-size: .8em;
+  color: aliceblue;
+}
