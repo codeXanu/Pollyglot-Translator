@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 header{
   background-image: url('./assets/Vector.png');

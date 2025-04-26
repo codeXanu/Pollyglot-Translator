@@ -71,21 +71,54 @@ function App() {
       {
         chatStyle ?
       
-        <div className="min-h-[60vh] max-h-[70vh] flex flex-col bg-white p-5 rounded-lg shadow-md border-[5px] border-solid border-black-500 overflow-y-auto">
+        <div className="min-h-[75vh] max-h-[75vh] flex flex-col bg-white p-5 rounded-lg shadow-md border-[5px] border-solid border-black-500 overflow-y-auto">
           <div className="flex-1 overflow-y-auto space-y-2 p-1">
             {chat.map((msg, index) => {
               const isLast = index === chat.length - 1;
-            return(
-              <div
-                key={index}
-                ref={isLast ? lastMessageRef : null}
-                className={`p-2 rounded-md text-white ${
-                  msg.type === "user" ? "bg-green-500 text-black rounded-tr-none " : "bg-blue-950 rounded-tl-none "
-                }`}
-              >
-                {msg.text}
-              </div>
-            )}
+              return(
+                <div key={index} ref={isLast ? lastMessageRef : null} >
+                  {
+                    loading && isLast ? 
+                    <>
+                    
+                      <div className="chat chat-end">
+                      <div className="chat-bubble chat-bubble-success">{ msg.text}</div>
+                      </div>
+                      <span className="loading loading-dots loading-md text-blue-400 "></span> 
+                    </>
+                    :
+                    msg.type ===  "user"?
+
+                    <div className="chat chat-end">
+                    <div className="chat-bubble chat-bubble-success">{ msg.text}</div>
+                    </div>
+                    :
+                    
+                    <div className="chat chat-start">
+                      <div className="chat-bubble chat-bubble-info">{ msg.text}</div>
+                    </div>
+
+                  }
+
+
+                  {/* <div
+                      key={index}
+                      ref={isLast ? lastMessageRef : null}
+                      className={`p-2 rounded-md text-white ${
+                        msg.type === "user" ?
+                        <div className="chat chat-start">
+                        <div className="chat-bubble chat-bubble-primary">What kind of nonsense is this</div>
+                        </div>
+                        : 
+                        
+                        "bg-blue-950 rounded-tl-none "
+                      }`}
+                    >
+                      {msg.text}
+                  </div> */}
+
+                </div>
+              )}
             )}
           </div>
 
@@ -95,10 +128,16 @@ function App() {
               placeholder="Type..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleTranslate();
+                }
+              }}
             />
             <button
               onClick={handleTranslate}
               className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full"
+
             >
               ➤
             </button>
