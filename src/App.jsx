@@ -30,6 +30,7 @@ function App() {
 
   const handleTranslate = async ()=> {
     setLoading(true)
+    setMessage("")
     const userMessage = { type: "user", text: message };
     setChat((prev) => [...prev, userMessage]);
 
@@ -46,7 +47,7 @@ function App() {
       setLoading(false)
       const botResponse = { type: "bot", text: data.reply };
       setChat((prev) => [...prev, botResponse]);
-      setMessage("");
+      
 
     } catch (error) {
       console.error("ERROR:", error)
