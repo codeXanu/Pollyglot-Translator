@@ -35,7 +35,7 @@ function App() {
     setChat((prev) => [...prev, userMessage]);
 
     try {
-      const res = await fetch("https://open-ai-node-ylpio.ondigitalocean.app/api/chat", {
+      const res = await fetch("https://goldfish-app-8e5hk.ondigitalocean.app/api/chat", {
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify(({message, language}))
