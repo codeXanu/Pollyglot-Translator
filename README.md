@@ -90,10 +90,8 @@ npm run preview
 
 ## 📸 Screenshots
 
-> You can add screenshots like this:
-```md
 <img src="public/polyglot.png" width="300" />
-```
+
 
 ---
 
